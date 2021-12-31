@@ -12,7 +12,7 @@ def main():
     data = github()
     write_to_csv(data)
     upload_to_s3(FILE)
-    print("File written to voters.csv and uploaded to S3")
+    print(f"File written to {FILE} and uploaded to S3")
 
 
 def github():
@@ -24,15 +24,16 @@ def github():
 
 
 def write_to_csv(data):
-    with open("voters.csv", "w") as f:
+    with open(FILE, "w") as f:
         for member in range(len(data)):
             f.write(f"github,{data[member]['login']}\n")
 
 
-def upload_to_s3(FILE):
+def upload_to_s3(csv):
     s3 = boto3.resource("s3")
     bucket = config.get("aws", "bucket")
-    s3.Bucket(bucket).put_object(Key="voters.csv", Body=FILE)
+    data = open(csv, "rb")
+    s3.Bucket(bucket).put_object(Key=csv, Body=data)
 
 
 if __name__ == "__main__":
