@@ -26,5 +26,5 @@ config.set("aws", "bucket", args.bucket)
 config.set("default", "file", "voters.csv")
 
 
-with open(file="test.ini", mode="w+", encoding="utf-8") as f:
+with open(file=".env", mode="w+", encoding="utf-8") as f:
     config.write(f)
