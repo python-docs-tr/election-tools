@@ -1,7 +1,16 @@
 import requests
 import json
 import boto3
+import argparse
+import sys, os
 from configparser import ConfigParser
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--no_print", help="Disable printing")
+args = parser.parse_args()
+
+if args.no_print:
+    sys.stdout = open(os.devnull, "w")
 
 config = ConfigParser()
 config.read(".env")
