@@ -20,8 +20,8 @@ config.add_section("default")
 
 
 config.set("github", "access_token", args.github_access_token)
-config.set("aws", "aws_access_key_id", args.aws_access_key_id)
-config.set("aws", "aws_secret_access_key", args.aws_secret_access_key)
+config.set("aws", "access_key_id", args.aws_access_key_id)
+config.set("aws", "secret_access_key", args.aws_secret_access_key)
 config.set("aws", "bucket", args.bucket)
 config.set("default", "file", "voters.csv")
 
