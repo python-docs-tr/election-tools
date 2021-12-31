@@ -7,6 +7,11 @@ config = ConfigParser()
 config.read(".env")
 FILE = config.get("default", "file")
 
+session = boto3.Session(
+    aws_access_key_id=config.get("aws", "access_key_id"),
+    aws_secret_access_key=config.get("aws", "secret_access_key"),
+)
+
 
 def main():
     data = github()
@@ -30,7 +35,7 @@ def write_to_csv(data):
 
 
 def upload_to_s3(csv):
-    s3 = boto3.resource("s3")
+    s3 = session.resource("s3")
     bucket = config.get("aws", "bucket")
     data = open(csv, "rb")
     s3.Bucket(bucket).put_object(Key=csv, Body=data)
