@@ -4,9 +4,9 @@ on:
   push:
     branches: [ "**" ]
   pull_request:
-    branches: [ "**" ]
+    branches: [ "master" ]
   schedule:
-    - cron: '17 14 * * 3'
+    - cron: '0 0 12 1/1 * ? *'
 
 jobs:
   test:
