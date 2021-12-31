@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ "master" ]
   schedule:
-    - cron: '0 0 12 1/1 * ? *'
+    - cron: '00 12 * * *'
 
 jobs:
   test:
